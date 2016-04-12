@@ -1,0 +1,47 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "51E302C4420FD8797C387D2D6F3997BAA7AE41AC",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "D0D1F1BDE1E04DFB8C573C79D9EF2DB8C255E966" : 0,
+
+    "F984CA8EF875306C54E5D78793E0EE2306E7986F" : 0,
+
+    "51E302C4420FD8797C387D2D6F3997BAA7AE41AC" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "91C921DA-B65C-46C6-BFE5-8F6C49D9AFB9",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "D0D1F1BDE1E04DFB8C573C79D9EF2DB8C255E966" : "Accompany",
+
+    "F984CA8EF875306C54E5D78793E0EE2306E7986F" : "Project\/",
+    "51E302C4420FD8797C387D2D6F3997BAA7AE41AC" : "Accompany129\/"
+
+    "51E302C4420FD8797C387D2D6F3997BAA7AE41AC" : "Project\/"
+
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Accompany",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Accompany.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/18910026892\/accompany.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "51E302C4420FD8797C387D2D6F3997BAA7AE41AC"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/18706836762\/Accompany.git",
+
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/18910026892\/AccomPany.git",
+
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "51E302C4420FD8797C387D2D6F3997BAA7AE41AC"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/18706836762\/Accompany.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D0D1F1BDE1E04DFB8C573C79D9EF2DB8C255E966"
+    }
+  ]
+}
