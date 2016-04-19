@@ -63,6 +63,8 @@
 //支付价格
 @property (nonatomic,copy)NSString * amount;
 
+//优惠券
+@property (nonatomic,copy)NSString * promoId;
 
 @property(nonatomic,copy)NSString *CreatOrderNum;
 @property(nonatomic,copy)NSString *CreatOrderMonay;

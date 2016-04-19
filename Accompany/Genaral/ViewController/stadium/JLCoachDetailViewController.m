@@ -289,9 +289,15 @@ static const char kRepresentedObject;
     NSString * price =[self.coachModel.grssCourse valueForKey:@"price"];
     
     NSLog(@"&&&&&&%@",price);
+    userInfo = [UserInfo sharedUserInfo];
+    
     
     if (!price) {
         [HDHud showMessageInView:self.view title:@"对不起，该教练无有效课程，暂时无法够课"];
+    }else if([userInfo.userId isEqualToString:self.coachModel.userId])
+    {
+        [HDHud showMessageInView:self.view title:@"对不起，您无法购买自己的课程"];
+        
     }else
     {
         JLBuyCourseViewController * BuyCourseVc= [JLBuyCourseViewController viewController];

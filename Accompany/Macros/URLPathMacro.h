@@ -204,4 +204,7 @@
 //视频列表
 #define URL_VideoList BaseURL(@"getVideoList")
 
+//用户－提交订单
+#define URL_submitUserInfo BaseURL(@"setUserEx")
+
 #endif /* URLPathMacro_h */

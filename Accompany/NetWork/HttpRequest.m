@@ -74,7 +74,7 @@
 
 
 //带图片Post 请求
--(void)RequestDataWithUrl:(NSString*)urlString pragma:(NSDictionary*)pragmaDict ImageDatas:(id)data imageName:(NSString*)imageName;
+-(void)RequestDataWithUrl:(NSString*)urlString pragma:(NSDictionary*)pragmaDict ImageDatas:(id)data imageName:(id)imageName;
 {
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
@@ -97,7 +97,8 @@
             //多张图片上传
             [data enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 NSData *imgData = (NSData *)obj;
-                [formData appendPartWithFileData:imgData name:imageName fileName:@"defult_placeImage.png" mimeType:@"png"];
+                NSString *imgKey = [imageName isKindOfClass:[NSString class]]?imageName:imageName[idx];
+                [formData appendPartWithFileData:imgData name:imgKey fileName:@"defult_placeImage.png" mimeType:@"png"];
             }];
         }
         

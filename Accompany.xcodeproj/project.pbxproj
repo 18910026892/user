@@ -10,10 +10,8 @@
 		53BAB09CD7025A96CAA31F28 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C11D4831D2595D6D0D221565 /* libPods.a */; };
 		D20BE4151C5A0DD7005F1745 /* StadiumCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D20BE4141C5A0DD7005F1745 /* StadiumCollectionViewCell.m */; };
 		D20BE4271C5A0FCD005F1745 /* JLDropMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = D20BE4261C5A0FCD005F1745 /* JLDropMenu.m */; };
-		D21223681C7C19E100502ABA /* HttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D21223671C7C19E100502ABA /* HttpRequest.m */; };
 		D218576D1CAB9E8B00C5128F /* ApiXml.m in Sources */ = {isa = PBXBuildFile; fileRef = D21857681CAB9E8B00C5128F /* ApiXml.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D218576E1CAB9E8B00C5128F /* WXUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D21857691CAB9E8B00C5128F /* WXUtil.m */; };
-		D218576F1CAB9E8B00C5128F /* payRequsestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D218576C1CAB9E8B00C5128F /* payRequsestHandler.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D21EBF641C5CE5D2007AA9A3 /* JLMessageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21EBF631C5CE5D2007AA9A3 /* JLMessageListViewController.m */; };
 		D21EC1661C5D10C5007AA9A3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D21EC1681C5D10C5007AA9A3 /* Localizable.strings */; };
 		D23F8C361C58EAE200EE7923 /* JLVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D23F8C301C58EAE200EE7923 /* JLVideoViewController.m */; };
@@ -74,6 +72,8 @@
 		D27438D71CA3D68E0011E99F /* rscode.c in Sources */ = {isa = PBXBuildFile; fileRef = D27438CE1CA3D68E0011E99F /* rscode.c */; };
 		D27438D81CA3D68E0011E99F /* split.c in Sources */ = {isa = PBXBuildFile; fileRef = D27438D01CA3D68E0011E99F /* split.c */; };
 		D27C98F41C76A9430027DFA6 /* NickNameAndHeadImage.m in Sources */ = {isa = PBXBuildFile; fileRef = D27C98F31C76A9430027DFA6 /* NickNameAndHeadImage.m */; };
+		D27E6E051CC607FC00C4EDAA /* HttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D27E6E041CC607FC00C4EDAA /* HttpRequest.m */; };
+		D27E6E111CC609B800C4EDAA /* JLInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D27E6E101CC609B800C4EDAA /* JLInfoViewController.m */; };
 		D28A0CB91C9D27EF008B6FD0 /* JLVersionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D28A0CB81C9D27EF008B6FD0 /* JLVersionViewController.m */; };
 		D28A0CBB1C9D2F14008B6FD0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D28A0CBA1C9D2F14008B6FD0 /* Images.xcassets */; };
 		D28AFD791C573B7200E291A2 /* JLWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D28AFD781C573B7200E291A2 /* JLWebViewController.m */; };
@@ -267,7 +267,7 @@
 		D2DB896B1C53690E0085AC09 /* UIUnderlinedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DB896A1C53690E0085AC09 /* UIUnderlinedButton.m */; };
 		D2DB896E1C5369210085AC09 /* CustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DB896D1C5369210085AC09 /* CustomTextField.m */; };
 		D2DB897B1C5369D10085AC09 /* ProtocolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DB89771C5369D10085AC09 /* ProtocolViewController.m */; };
-		D2DB897C1C5369D10085AC09 /* 苏宁易购会员章程.txt in Resources */ = {isa = PBXBuildFile; fileRef = D2DB89791C5369D10085AC09 /* 苏宁易购会员章程.txt */; };
+		D2DB897C1C5369D10085AC09 /* 教练随行会员章程.txt in Resources */ = {isa = PBXBuildFile; fileRef = D2DB89791C5369D10085AC09 /* 教练随行会员章程.txt */; };
 		D2DB89821C5369F10085AC09 /* ApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DB89801C5369F10085AC09 /* ApplyViewController.m */; };
 		D2DB89981C53A8DD0085AC09 /* StadiumCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DB89971C53A8DD0085AC09 /* StadiumCollectionModel.m */; };
 		D2DB899B1C53AB4A0085AC09 /* StadiumAdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DB899A1C53AB4A0085AC09 /* StadiumAdModel.m */; };
@@ -449,14 +449,10 @@
 		D20BE4141C5A0DD7005F1745 /* StadiumCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StadiumCollectionViewCell.m; sourceTree = "<group>"; };
 		D20BE4251C5A0FCD005F1745 /* JLDropMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLDropMenu.h; sourceTree = "<group>"; };
 		D20BE4261C5A0FCD005F1745 /* JLDropMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLDropMenu.m; sourceTree = "<group>"; };
-		D21223661C7C19D300502ABA /* HttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpRequest.h; sourceTree = "<group>"; };
-		D21223671C7C19E100502ABA /* HttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpRequest.m; sourceTree = "<group>"; };
 		D21857671CAB9E8B00C5128F /* ApiXml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiXml.h; sourceTree = "<group>"; };
 		D21857681CAB9E8B00C5128F /* ApiXml.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiXml.m; sourceTree = "<group>"; };
 		D21857691CAB9E8B00C5128F /* WXUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXUtil.m; sourceTree = "<group>"; };
 		D218576A1CAB9E8B00C5128F /* WXUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXUtil.h; sourceTree = "<group>"; };
-		D218576B1CAB9E8B00C5128F /* payRequsestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = payRequsestHandler.h; sourceTree = "<group>"; };
-		D218576C1CAB9E8B00C5128F /* payRequsestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = payRequsestHandler.m; sourceTree = "<group>"; };
 		D21EBF621C5CE5D2007AA9A3 /* JLMessageListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLMessageListViewController.h; sourceTree = "<group>"; };
 		D21EBF631C5CE5D2007AA9A3 /* JLMessageListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLMessageListViewController.m; sourceTree = "<group>"; };
 		D21EC1671C5D10C5007AA9A3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -574,6 +570,11 @@
 		D27438D11CA3D68E0011E99F /* split.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = split.h; sourceTree = "<group>"; };
 		D27C98F21C76A9430027DFA6 /* NickNameAndHeadImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NickNameAndHeadImage.h; sourceTree = "<group>"; };
 		D27C98F31C76A9430027DFA6 /* NickNameAndHeadImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NickNameAndHeadImage.m; sourceTree = "<group>"; };
+		D27E6E021CC607DE00C4EDAA /* URLPathMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLPathMacro.h; sourceTree = "<group>"; };
+		D27E6E031CC607FC00C4EDAA /* HttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpRequest.h; sourceTree = "<group>"; };
+		D27E6E041CC607FC00C4EDAA /* HttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpRequest.m; sourceTree = "<group>"; };
+		D27E6E0F1CC609B800C4EDAA /* JLInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLInfoViewController.h; sourceTree = "<group>"; };
+		D27E6E101CC609B800C4EDAA /* JLInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLInfoViewController.m; sourceTree = "<group>"; };
 		D28A0CB71C9D27EF008B6FD0 /* JLVersionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLVersionViewController.h; sourceTree = "<group>"; };
 		D28A0CB81C9D27EF008B6FD0 /* JLVersionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLVersionViewController.m; sourceTree = "<group>"; };
 		D28A0CBA1C9D2F14008B6FD0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -993,7 +994,7 @@
 		D2DB896D1C5369210085AC09 /* CustomTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTextField.m; sourceTree = "<group>"; };
 		D2DB89771C5369D10085AC09 /* ProtocolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolViewController.m; sourceTree = "<group>"; };
 		D2DB89781C5369D10085AC09 /* ProtocolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolViewController.h; sourceTree = "<group>"; };
-		D2DB89791C5369D10085AC09 /* 苏宁易购会员章程.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "苏宁易购会员章程.txt"; sourceTree = "<group>"; };
+		D2DB89791C5369D10085AC09 /* 教练随行会员章程.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "教练随行会员章程.txt"; sourceTree = "<group>"; };
 		D2DB89801C5369F10085AC09 /* ApplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplyViewController.m; sourceTree = "<group>"; };
 		D2DB89811C5369F10085AC09 /* ApplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyViewController.h; sourceTree = "<group>"; };
 		D2DB89961C53A8DD0085AC09 /* StadiumCollectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StadiumCollectionModel.h; sourceTree = "<group>"; };
@@ -1122,7 +1123,6 @@
 		FC6F774F1C520EF3003671C6 /* ColorMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorMacro.h; sourceTree = "<group>"; };
 		FC6F77501C520F36003671C6 /* LocalFileMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalFileMacro.h; sourceTree = "<group>"; };
 		FC6F77511C520F5B003671C6 /* UMClickConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMClickConstant.h; sourceTree = "<group>"; };
-		FC6F77521C520F97003671C6 /* URLPathMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URLPathMacro.h; sourceTree = "<group>"; };
 		FC6F77531C520FAA003671C6 /* LayoutMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayoutMacro.h; sourceTree = "<group>"; };
 		FC6F77561C521523003671C6 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
 		FC6F77571C521523003671C6 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
@@ -1645,8 +1645,6 @@
 				D21857681CAB9E8B00C5128F /* ApiXml.m */,
 				D21857691CAB9E8B00C5128F /* WXUtil.m */,
 				D218576A1CAB9E8B00C5128F /* WXUtil.h */,
-				D218576B1CAB9E8B00C5128F /* payRequsestHandler.h */,
-				D218576C1CAB9E8B00C5128F /* payRequsestHandler.m */,
 			);
 			name = WechatPay;
 			sourceTree = "<group>";
@@ -2586,7 +2584,7 @@
 				D25CC1811C75621D00411AA7 /* RegisterViewController.m */,
 				D2DB89781C5369D10085AC09 /* ProtocolViewController.h */,
 				D2DB89771C5369D10085AC09 /* ProtocolViewController.m */,
-				D2DB89791C5369D10085AC09 /* 苏宁易购会员章程.txt */,
+				D2DB89791C5369D10085AC09 /* 教练随行会员章程.txt */,
 			);
 			name = Register;
 			sourceTree = "<group>";
@@ -2634,6 +2632,8 @@
 		D2E85DB71C8D0BE3006A1319 /* Info */ = {
 			isa = PBXGroup;
 			children = (
+				D27E6E0F1CC609B800C4EDAA /* JLInfoViewController.h */,
+				D27E6E101CC609B800C4EDAA /* JLInfoViewController.m */,
 			);
 			name = Info;
 			sourceTree = "<group>";
@@ -3135,12 +3135,12 @@
 		FC6F770C1C52011E003671C6 /* Macros */ = {
 			isa = PBXGroup;
 			children = (
+				D27E6E021CC607DE00C4EDAA /* URLPathMacro.h */,
 				FC6F770D1C52011E003671C6 /* Macros.h */,
 				FC6F77531C520FAA003671C6 /* LayoutMacro.h */,
 				FC6F774F1C520EF3003671C6 /* ColorMacro.h */,
 				FC6F77501C520F36003671C6 /* LocalFileMacro.h */,
 				FC6F77511C520F5B003671C6 /* UMClickConstant.h */,
-				FC6F77521C520F97003671C6 /* URLPathMacro.h */,
 			);
 			path = Macros;
 			sourceTree = "<group>";
@@ -3148,8 +3148,8 @@
 		FC6F770E1C52011E003671C6 /* NetWork */ = {
 			isa = PBXGroup;
 			children = (
-				D21223661C7C19D300502ABA /* HttpRequest.h */,
-				D21223671C7C19E100502ABA /* HttpRequest.m */,
+				D27E6E031CC607FC00C4EDAA /* HttpRequest.h */,
+				D27E6E041CC607FC00C4EDAA /* HttpRequest.m */,
 				FCAE7A981CA6C93500D94035 /* JLComRequestManager.h */,
 				FCAE7A991CA6C93500D94035 /* JLComRequestManager.m */,
 			);
@@ -3472,7 +3472,7 @@
 				FCF020021C83DFE60053F187 /* tab2_gray@2x.png in Resources */,
 				FCF0200D1C83DFE60053F187 /* attention_jia@2x.png in Resources */,
 				FCF0200B1C83DFE60053F187 /* addimage@2x.png in Resources */,
-				D2DB897C1C5369D10085AC09 /* 苏宁易购会员章程.txt in Resources */,
+				D2DB897C1C5369D10085AC09 /* 教练随行会员章程.txt in Resources */,
 				D2D724571C5F926A00B1CEDA /* group@2x.png in Resources */,
 				FCF020041C83DFE60053F187 /* tab3_gray@2x.png in Resources */,
 				D2D724401C5F926A00B1CEDA /* chatBar_colorMore_audioCallSelected@2x.png in Resources */,
@@ -3798,6 +3798,7 @@
 				D2D723D91C5F926900B1CEDA /* EMAudioRecorderUtil.m in Sources */,
 				D25CC1821C75621D00411AA7 /* RegisterViewController.m in Sources */,
 				D2D723E71C5F926A00B1CEDA /* MWGridViewController.m in Sources */,
+				D27E6E111CC609B800C4EDAA /* JLInfoViewController.m in Sources */,
 				D25A45481CAB5F2500C6DE4E /* JLCommentModel.m in Sources */,
 				D2D7242B1C5F926A00B1CEDA /* EaseBubbleView+Video.m in Sources */,
 				D2DFF0F21C84751C00C5495C /* JLSearchVenueResultViewController.m in Sources */,
@@ -3835,7 +3836,6 @@
 				D2646EE61C72F11D0073C0F6 /* SearchTextField.m in Sources */,
 				D2D723E11C5F926900B1CEDA /* EMVoiceConverter.mm in Sources */,
 				FCD1A79B1CB8C11300E1D469 /* JLAcommunityTopCell.m in Sources */,
-				D218576F1CAB9E8B00C5128F /* payRequsestHandler.m in Sources */,
 				D2D7241F1C5F926A00B1CEDA /* EaseMessageViewController.m in Sources */,
 				FC6F77831C5237B5003671C6 /* BaseView.m in Sources */,
 				D27438991CA372B60011E99F /* JLCoachDetailViewController.m in Sources */,
@@ -3890,7 +3890,6 @@
 				D2D723FF1C5F926A00B1CEDA /* PSTCollectionView.m in Sources */,
 				D25B57671C858603007BF86C /* JLProfessionalCertificationViewController.m in Sources */,
 				D2D724181C5F926A00B1CEDA /* EaseMessageReadManager.m in Sources */,
-				D21223681C7C19E100502ABA /* HttpRequest.m in Sources */,
 				D2F1D19F1C585DC90067D287 /* JLChangePasswordViewController.m in Sources */,
 				FCD1A7AB1CB8C11300E1D469 /* UIImage+RoundedCorner.m in Sources */,
 				D2D724271C5F926A00B1CEDA /* EaseBubbleView+File.m in Sources */,
@@ -3901,6 +3900,7 @@
 				D2D724071C5F926A00B1CEDA /* PSTGridLayoutInfo.m in Sources */,
 				D2D724191C5F926A00B1CEDA /* EaseEmoji.m in Sources */,
 				D2D723E61C5F926A00B1CEDA /* MWGridCell.m in Sources */,
+				D27E6E051CC607FC00C4EDAA /* HttpRequest.m in Sources */,
 				D2621BBB1C7B084100675A49 /* JLMyAttentionViewController.m in Sources */,
 				D2D9AE1E1C5B84EF00D8E833 /* JLPersonalCenterHeader.m in Sources */,
 				D2D7242A1C5F926A00B1CEDA /* EaseBubbleView+Text.m in Sources */,
@@ -4080,7 +4080,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = CoachAccompanying.user;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "86a22159-a6e8-40a7-9cc2-b35038441ca8";
+				PROVISIONING_PROFILE = "0063e360-fe58-477c-aa5d-d1ce109551aa";
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
@@ -4144,7 +4144,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = CoachAccompanying.user;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "86a22159-a6e8-40a7-9cc2-b35038441ca8";
+				PROVISIONING_PROFILE = "0063e360-fe58-477c-aa5d-d1ce109551aa";
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;

@@ -10,7 +10,7 @@
 #import "JLNearbyMenuView.h"
 #import "JLPostUserInfoModel.h"
 #import "JLOtherAddFriendCell.h"
-@interface JLNearbyPeopleViewController :BaseViewController<UITableViewDataSource,UITableViewDelegate>
+@interface JLNearbyPeopleViewController :BaseViewController<UITableViewDataSource,UITableViewDelegate,JLOtherAddFriendCellDelegate>
 {
     UserInfo * userInfo;
 }

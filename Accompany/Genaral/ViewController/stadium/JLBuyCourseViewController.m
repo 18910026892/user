@@ -12,7 +12,6 @@
 #import "Order.h"
 #import "DataSigner.h"
 #import <AlipaySDK/AlipaySDK.h>
-#import "payRequsestHandler.h"
 #import <QuartzCore/QuartzCore.h>
 #import "SNY_Toast.h"
 @implementation JLBuyCourseViewController
@@ -45,6 +44,8 @@
     JLExchangeModel * model = (JLExchangeModel*)notification.object;
     
     _Discount  = model.price;
+    
+    _promoId = model.id;
     
     //一个cell刷新
 
@@ -95,14 +96,14 @@
     NSString * attach = @"教练随行订单支付";
     NSString * body = [NSString stringWithFormat:@"教练随行订单%@",courtseID];
     
+    NSString * promoId = self.promoId;
     
     userInfo = [UserInfo sharedUserInfo];
     
     
-    NSDictionary * postDict = [NSDictionary dictionaryWithObjectsAndKeys:userInfo.token,@"token",@"1",@"amount",courtseID,@"courseId",userComment,@"userComment",channel,@"channel",attach,@"attach",body,@"body", nil];
+    NSDictionary * postDict = [NSDictionary dictionaryWithObjectsAndKeys:userInfo.token,@"token",@"1",@"amount",courtseID,@"courseId",userComment,@"userComment",channel,@"channel",attach,@"attach",body,@"body",promoId,@"promoId", nil];
     
-     NSLog(@"%@***%@",postDict,URL_creatOrder);
-    
+
     
     HttpRequest * request = [[HttpRequest alloc]init];
     [request RequestDataWithUrl:URL_creatOrder pragma:postDict];
@@ -202,6 +203,13 @@
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section;
 {
     
+    NSString * str;
+    if (section==0) {
+        str= @"";
+    }else
+    {
+        str = @"     选择支付方式";
+    }
     
   
     _sectionTitle = [[UILabel alloc]initWithFrame:CGRectMake(20, 5, 100, 20)];
@@ -209,7 +217,7 @@
     _sectionTitle.textColor = [UIColor grayColor];
     _sectionTitle.textAlignment = NSTextAlignmentLeft;
     _sectionTitle.font = [UIFont systemFontOfSize:14.0f];
-    _sectionTitle.text = [NSString stringWithFormat:@"     选择支付方式"];
+    _sectionTitle.text = str;
   
     return _sectionTitle;
     

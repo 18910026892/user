@@ -11,6 +11,7 @@
 #import "JLAddFriendCell.h"
 #import "InvitationManager.h"
 #import "Config.h"
+#import "JLPersonalCenterViewController.h"
 @interface JLNearbyPeopleViewController ()<UITextFieldDelegate, UIAlertViewDelegate>
 
 
@@ -304,7 +305,7 @@
         cell = [[JLOtherAddFriendCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         cell.backgroundColor = [UIColor clearColor];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+        cell.delegate = self;
         
     }else{
         
@@ -313,9 +314,12 @@
         }
     }
     cell.UserModel = model;
+    cell.userImageView.tag = indexPath.row;
     
     return cell;
 }
+
+
 
 #pragma mark - Table view delegate
 

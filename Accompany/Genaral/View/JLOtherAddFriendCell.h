@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "JLPostUserInfoModel.h"
-@interface JLOtherAddFriendCell : UITableViewCell
+@class JLOtherAddFriendCell;
+@protocol JLOtherAddFriendCellDelegate <NSObject>
 
+
+
+
+@end
+@interface JLOtherAddFriendCell : UITableViewCell
+@property(nonatomic,strong)id<JLOtherAddFriendCellDelegate>delegate;
 @property (strong, nonatomic) UILabel *addLabel;
 
 @property (nonatomic,strong)JLPostUserInfoModel * UserModel;

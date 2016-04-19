@@ -8,7 +8,6 @@
 
 #import "BaseTabBarController.h"
 #import "JLCommunityViewContrller.h"
-#import "JLVideoViewController.h"
 #import "JLStadiumViewController.h"
 #import "JLMessageListViewController.h"
 #import "JLChatViewController.h"
@@ -19,6 +18,7 @@
 #import "JLContactsViewController.h"
 #import "LoginViewController.h"
 #import "ApplyViewController.h"
+#import "JLInfoViewController.h"
 static NSInteger num =0;
 //两次提示的默认间隔
 static const CGFloat kDefaultPlaySoundInterval = 3.0;
@@ -33,6 +33,7 @@ static NSString *kGroupName = @"GroupName";
     JLChatViewController * _chatAllVc;
     JLMeViewController *_meVC;
     JLContactsViewController * _contactsVC;
+    JLInfoViewController * infoVc;
 }
 
 @property (nonatomic,assign)NSInteger ViewControllerCount;
@@ -519,8 +520,8 @@ static BaseTabBarController* _myTabBarVC = nil;
     [self setupItemWithViewController:staVC ItemData:@{@"title":@"首页",@"imageStr":@"tab1_gray",@"imageStr_s":@"tab1_red"}];
     
     
-    JLVideoViewController *vidVC = [JLVideoViewController viewController];
-    [self setupItemWithViewController:vidVC ItemData:@{@"title":@"视频",@"imageStr":@"tab2_gray",@"imageStr_s":@"tab2_red"}];
+    infoVc  = [JLInfoViewController viewController];
+    [self setupItemWithViewController:infoVc ItemData:@{@"title":@"资料",@"imageStr":@"tab2_gray",@"imageStr_s":@"tab2_red"}];
     
     
     JLCommunityViewContrller *comVC = [JLCommunityViewContrller viewController];

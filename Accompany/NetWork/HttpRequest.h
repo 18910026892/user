@@ -29,7 +29,7 @@ typedef void(^failureGetData)(id error);
 //post请求
 -(void)RequestDataWithUrl:(NSString*)urlString pragma:(NSDictionary*)pragmaDict;
 //带图片Post请求
--(void)RequestDataWithUrl:(NSString*)urlString pragma:(NSDictionary*)pragmaDict ImageDatas:(id)data imageName:(NSString*)imageName;
+-(void)RequestDataWithUrl:(NSString*)urlString pragma:(NSDictionary*)pragmaDict ImageDatas:(id)data imageName:(id)imageName;
 //下载
 -(void)StartDownloadTaskWithUrl:(NSString*)urlString;
 //上传

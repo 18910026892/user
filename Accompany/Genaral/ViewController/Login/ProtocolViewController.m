@@ -21,7 +21,7 @@
         _textView.editable = NO;//禁止编辑
         _textView.autoresizingMask = UIViewAutoresizingFlexibleHeight;//自适应高度
         
-        NSString * path = [[NSBundle mainBundle] pathForResource:@"苏宁易购会员章程" ofType:@"txt"];
+        NSString * path = [[NSBundle mainBundle] pathForResource:@"教练随行会员章程" ofType:@"txt"];
         
         NSString * prtocol = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
         
