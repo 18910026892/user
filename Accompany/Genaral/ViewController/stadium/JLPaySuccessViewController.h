@@ -9,7 +9,7 @@
 #import "BaseViewController.h"
 
 @interface JLPaySuccessViewController : BaseViewController
-
+@property(nonatomic,strong)UIButton * BackButton;
 @property (nonatomic,strong)UIImageView * PaySuccessfulImage;
 @property (nonatomic,strong)UILabel * Label1 ;
 @end

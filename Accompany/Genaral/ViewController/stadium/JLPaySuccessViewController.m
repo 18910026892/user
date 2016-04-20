@@ -39,13 +39,36 @@
     // Do any additional setup after loading the view.
     [self setNavTitle:@"提示"];
     [self setupViews];
-    [self showBackButton:YES];
+  
     
 }
 -(void)setupViews
 {
     [self.view addSubview:self.PaySuccessfulImage];
     [self.view addSubview:self.Label1];
-  
+   
+    [self.Customview addSubview:self.BackButton];
 }
+
+
+-(UIButton*)BackButton
+{
+    if (!_BackButton) {
+        _BackButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _BackButton.frame = CGRectMake(10,20, 64*Proportion, 44);
+        _BackButton.imageEdgeInsets = UIEdgeInsetsMake(0,-20, 0, 25);
+        [_BackButton setImage:[UIImage imageNamed:@"BackButton"] forState:UIControlStateNormal];
+        [_BackButton setImage:[UIImage imageNamed:@"BackButtonHighlighted"] forState:UIControlStateHighlighted];
+        [_BackButton addTarget:self action:@selector(BackButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _BackButton;
+}
+
+-(void)BackButtonClick:(UIButton*)sender
+{
+
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
 @end

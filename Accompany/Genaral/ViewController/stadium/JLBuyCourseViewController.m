@@ -32,6 +32,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addExchange:) name:@"addExchange" object:nil];
     
+       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(PaySuccesessPoP) name:@"PaySuccesess" object:nil];
     
     _IsAlipay = NO;
     _IsWechatpay = NO;
@@ -86,13 +87,28 @@
         [HDHud showMessageInView:self.view title:@"亲，请先选择一种支付方式"];
     }else
     {
-        [HDHud showHUDInView:self.view title:@"支付中..."];
+        
+        
+        
+      [HDHud showHUDInView:self.view title:@"支付中..."];
         userInfo = [UserInfo sharedUserInfo];
         
         NSString * courtseID = [self.coachModel.grssCourse valueForKey:@"id"];
         
         NSString * userComment = @"";
-        NSString * channel = @"0";
+        NSString * channel;
+        
+        if (_IsWechatpay==YES&&!_IsAlipay) {
+            channel = @"0";
+        }else  if (_IsWechatpay==YES&&!_IsAlipay)
+        {
+            channel = @"1";
+            
+           
+          
+        }
+
+        
         NSString * attach = @"教练随行订单支付";
         NSString * body = [NSString stringWithFormat:@"教练随行订单%@",courtseID];
         
@@ -112,18 +128,18 @@
             
             
             
-            _WXinfoDict = obj[0];
+            _OrderDict = obj[0];
             
-            
+     
             if (_IsAlipay==YES&&_IsWechatpay==NO) {
                 
-                [self zhifubaoMethod];
+                [self zhifubaoMethod:_OrderDict];
                 
                 
             }else if(_IsWechatpay==YES&&_IsAlipay==NO)
             {
                 
-                [self wxpayWithDict:_WXinfoDict];
+                [self wxpayWithDict:_OrderDict];
                 
             }
             
@@ -143,11 +159,9 @@
 
         
     }
-    
-    
-    
 
-    
+
+
     
 }
 
@@ -485,7 +499,7 @@
 #pragma mark ===========Pay=============
 
 //支付宝
--(void)zhifubaoMethod
+-(void)zhifubaoMethod:(NSDictionary*)dict;
 {
     NSLog(@"调起支付宝");
     
@@ -493,12 +507,14 @@
     /*============================================================================*/
     NSString *partner = @"2088121913145957";//
     NSString *seller = @"joinuswo@126.com";//
-    NSString *privateKey = @"MIICeAIBADANBgkqhkiG9w0BAQEFAASCAmIwggJeAgEAAoGBAOElOeaZLawJQufVNFJQqQbJD2Y8L9aKpBA4V+e7N9QXPkusxRAqmD7r6juJhueGH/MQht3dtkQppvb+jW5k+nH52iPfDeIVQzwfhSxNmfVlYXvEEojwjNAzCOel1+AI+fmJFPbyE0nwph2ik94+FkARNrBchFBA1maJ1cnx28YvAgMBAAECgYEAwtzHWlBleSqi36hmGoB5asgGLgQVm2hvSyKY4pXlYgmj/zdPcAiNsJfbKSCExEoPyP4a3FgScrhiLBBxNITtRKzNo1Rlmx/Bp5A/mQgCgJg/RK+ckN+9r6lXt8DUqT3UMkWujFpz/Z3WiNNoRFRxjGYjVQdlTsNHbdhcaFYwoXECQQDznZdX+jHEZ9DxwKaVLHVEsvfU2JIVY8hDG07Mcj0V4I1ZrlFbAYCO/AA+8gwlvuB6izNyiBcpSpq8K9MxPduNAkEA7JdDs6wqi9nFF4xak1urpBSukAS7ockSvL3jHdoa2JvvnssFaSQlbN/tfGVV3pTXBPKVkjEy3r3Xxf/SEztbqwJAL6Hqi4sh2/MoiXxPle9BZpNPndBSj9gYufZG6/aSNwrW2GgbBB5BErP3IFeXRHIT1iINhyFQ1gP+STiQbJpZqQJBAN8YuH+p3qjnnkHZWOPRsqXT1tP5kpE50VBnYs4Yh+4wBSHg4eZGboAfHIuL5xAvnB6PPdmQSR7fN6P+2rLF62cCQQDkCGKnl963UZzUzjPJ4Uc/900HRlkNgTD7KtWzGI4wqsHY40GqvzBOPIluJji3z8ADcT7YkAAcbvpc9YPKDvJR";
+    NSString *privateKey = @"MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBANS4Vp5ncIqVGw0BkacjtQR/kSfTB1jOBdt2nNkmpea0JmgDlOqT2NTKSVGrhrVLClPiNPTCbHCs196x1xjkuIEvztMeoXWrkU7bHlTUoYLqq/cU9DNvSjCb8yjSTmQlAahhM98lSOSPgo3ak9tsJhz1eYqdtotXdRPKtG6cO5uPAgMBAAECgYB/TotYZeOurKnx0LyQ4QfW11nSEbPV7AcJXyVjuIOVXL+XhH09HpqoTyAuJo+KNIzLwxeaXDl1/Zt8BccLeOcKIepsBD9vj8HJt3x0yIwpYOiZ0DyI8MbQAQtupQDatWGfr9+Hf3xBKgfwPvLmR03THj6vqMCQsjDAv4pqSgkrUQJBAPhraIrgwzEo6PguuhQilA7TGj+LMScUxiE+CqczUmXBCZ+Me/Lc2pDBSPB2hLtUvfuL9YLU9c0DMIO7yqPxN4sCQQDbNg3xPDo7HRtGbn/rbIcMFNcwWru68OQTy1MWBucmkmVV7Nac53+ij6ZHGmS8QJ0SvqrX6ckcoEMd9hvyAIyNAkEAstJehtoUqCaSzVSVjjj161X65xMDZuaFWRiYApPnFGhIzRkLgF+K1fjM0IwAL/loaNLvACbcaZ+KJMnhrPHO0QJAB2Kq1ZXR4Gv6n0TZynS9mAqbtWVZLdMv2/rdscBJyWLlRx/TmzWxdyif0YVyH2WN5TPHTb7yp6Q+nqPMDTs3gQJBAJ9t3+wyDBtPb24S4Fz8l14IMtTSmoOmMoCgkIizO60O1nllHot3yDHZmwi3y1TASiwaOMySKgy8TD4ysgfxc7I=";
     
     /*============================================================================*/
     /*============================================================================*/
     
+    _CreatOrderNum = [dict objectForKey:@"orderNo"];
     
+    _CreatOrderMonay = [dict objectForKey:@"ordermoney"];
     //partner和seller获取失败,提示
     if ([partner length] == 0 || [seller length] == 0)
     {
@@ -517,12 +533,12 @@
     Order *order = [[Order alloc] init];
     order.partner = partner;
     order.seller = seller;
-    order.tradeNO = _CreatOrderNum; //订单ID（由商家自行制定）    ///
-    order.productName = @"同城拼车用户充值"; //商品标题
-    order.productDescription = @"同城拼车账户充值"; //商品描述
+    order.tradeNO = [self getRandomString]; //订单ID（由商家自行制定）    ///
+    order.productName = @"教练随行课程订单"; //商品标题
+    order.productDescription = @"教练随行视频课程"; //商品描述
     
     order.amount = _CreatOrderMonay; //商品价格                //
-    order.notifyURL =  @"http://123.57.216.180/api/pay/alipay_notify_url"; //回调URL
+    order.notifyURL =  @"http://172.1.10/app/test"; //回调URL
     
     order.service = @"mobile.securitypay.pay";
     order.paymentType = @"1";
@@ -531,7 +547,7 @@
     order.showUrl = @"m.alipay.com";
     
     //应用注册scheme,在AlixPayDemo-Info.plist定义URL types
-    NSString *appScheme = @"TCPCAliPay";
+    NSString *appScheme = @"accompanyAliPay";
     
     //将商品信息拼接成字符串
     NSString *orderSpec = [order description];
@@ -556,7 +572,44 @@
         }];
     }
 }
-
+-(NSString *)getRandomString
+{
+    NSString *str = [NSString stringWithFormat:@"%s",genRandomString(32)];
+    return str;
+}
+char* genRandomString(int length)
+{
+    int flag, i;
+    char* string;
+    srand((unsigned) time(NULL ));
+    if ((string = (char*) malloc(length)) == NULL )
+    {
+        //NSLog(@"Malloc failed!flag:14\n");
+        return NULL ;
+    }
+    
+    for (i = 0; i < length - 1; i++)
+    {
+        flag = rand() % 3;
+        switch (flag)
+        {
+            case 0:
+                string[i] = 'A' + rand() % 26;
+                break;
+            case 1:
+                string[i] = 'a' + rand() % 26;
+                break;
+            case 2:
+                string[i] = '0' + rand() % 10;
+                break;
+            default:
+                string[i] = 'x';
+                break;
+        }
+    }
+    string[length - 1] = '\0';
+    return string;
+}
 -(void)AliPayResultNotify:(NSNotification *)notify
 {
     NSDictionary *dict = [notify object];
@@ -641,35 +694,6 @@
     
 }
 
-
--(void)onResp:(BaseResp*)resp
-{
-    NSString *strMsg = [NSString stringWithFormat:@"errcode:%d", resp.errCode];
-    NSString *strTitle;
-    
-    NSDictionary *CodeDict = @{@"0":@"支付成功",@"-1":@"失败",@"-2":@"用户点击取消",@"-3":@"发送失败",@"-4":@"授权失败",@"-5":@"微信不支持"};
-    
-    if([resp isKindOfClass:[PayResp class]]){
-        
-        //支付返回结果，实际支付结果需要去微信服务器端查询
-        strTitle = [NSString stringWithFormat:@"支付结果"];
-        
-        switch (resp.errCode) {
-            case WXSuccess:
-                strMsg = @"支付结果：成功！";
-                [SNY_Toast showMsg:@"微信支付成功" WithDuration:2 WithStyle:showStyleWear];
-               
-                
-                break;
-                
-            default:
-                
-                strMsg = [NSString stringWithFormat:@"支付结果：%@！",[CodeDict valueForKey:[NSString stringWithFormat:@"%d",resp.errCode]]];
-                [self alert:@"提示" msg:strMsg];
-                break;
-        }
-    }
-}
 
 
 

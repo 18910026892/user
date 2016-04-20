@@ -61,7 +61,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>alipayPayDemo</string>
+				<string>accompanyAliPay</string>
 			</array>
 		</dict>
 	</array>

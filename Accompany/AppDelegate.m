@@ -265,6 +265,9 @@ didFinishLaunchingWithOptions:launchOptions
             case WXSuccess:
                 strMsg = @"支付结果：成功！";
                 NSLog(@"支付成功－PaySuccess，retcode = %d", resp.errCode);
+
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"PaySuccesess" object:nil];
+                
                 break;
                 
             default:
@@ -273,8 +276,12 @@ didFinishLaunchingWithOptions:launchOptions
                 break;
         }
     }
+    
+    
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    [alert show];
+    if (![strMsg isEqualToString:@"支付结果：成功！"]) {
+        [alert show];
+    }
 }
 
 @end

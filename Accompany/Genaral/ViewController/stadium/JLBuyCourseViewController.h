@@ -68,7 +68,7 @@
 
 @property(nonatomic,copy)NSString *CreatOrderNum;
 @property(nonatomic,copy)NSString *CreatOrderMonay;
-@property(nonatomic,strong)NSDictionary *WXinfoDict;
+@property(nonatomic,strong)NSDictionary *OrderDict;
 
 
 @end
