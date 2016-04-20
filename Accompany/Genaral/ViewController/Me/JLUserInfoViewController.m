@@ -31,7 +31,7 @@
 }
 -(void)setupDatas
 {
-    _cellTitleArray = @[@"头像",@"昵称",@"性别",@"个性签名",@"身高",@"体重",@"年龄",@"城市",@"教练类型"];
+    _cellTitleArray = @[@"头像",@"昵称",@"性别",@"个性签名",@"身高",@"体重",@"年龄"];
     
     userInfo = [UserInfo sharedUserInfo];
     _userPhoto = userInfo.userPhoto;
@@ -329,71 +329,8 @@
                     
                 }
                     break;
-                   case 7:
-                {
-                    CGRect rect = CGRectMake(kMainBoundsWidth-80*Proportion,0, 64*Proportion, 44);
-               
-                    _CityArray = @[@"北京",@"上海",@"广东"];
-                    
-                    _CityPickerButton =  [[PickerButton alloc]initWithItemList:_CityArray];
-                    
-                    _CityPickerButton.frame = rect;
-                    
-                    [_CityPickerButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                    
-                    
-                    _CityPickerButton.titleLabel.font = [UIFont systemFontOfSize:14];
-                    
                   
-                    _CityPickerButton.isShowSelectItemOnButton = YES;
-                    
-                    _CityPickerButton.delegate = self;
-                    
-                    _CityPickerButton.tag = 9998;
-                    
-                    if (![_CityName isEmpty]) {
-                        [_CityPickerButton setTitle:_CityName forState:UIControlStateNormal];
-                    }else if([_CityName isEmpty])
-                    {
-                        [_CityPickerButton setTitle:@"请选择" forState:UIControlStateNormal];
-                    }
-                    
-                    [cell.contentView addSubview:_CityPickerButton];
-                }
-                    break;
-                    case 8:
-                {
-                    CGRect rect = CGRectMake(kMainBoundsWidth-80*Proportion,0, 64*Proportion, 44);
-                    
-                    _typeArray= @[@"狂人",@"健身",@"瘦腿",@"瘦腰"];
-                    
-                    _TypePickerButton =  [[PickerButton alloc]initWithItemList:_typeArray];
-                    
-                    _TypePickerButton.frame = rect;
-                    
-                    [_TypePickerButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                    
-                    
-                    _TypePickerButton.titleLabel.font = [UIFont systemFontOfSize:14];
-                    
-                    _TypePickerButton.isShowSelectItemOnButton = YES;
-                    
-                    _TypePickerButton.delegate = self;
-                    
-                    _TypePickerButton.tag = 9999;
-                    
-                    if (![_Category isEmpty]) {
-                        [_TypePickerButton setTitle:_Category forState:UIControlStateNormal];
-                    }else if ([_Category isEmpty])
-                    {
-                        
-                   [_TypePickerButton setTitle:@"请选择" forState:UIControlStateNormal];
-                    
-                    }
-                     [cell.contentView addSubview:_TypePickerButton];
-                    
-                }
-                    break;
+        
                 default:
                     break;
             }
