@@ -538,7 +538,7 @@
     order.productDescription = @"教练随行视频课程"; //商品描述
     
     order.amount = _CreatOrderMonay; //商品价格                //
-    order.notifyURL =  @"http://172.1.10/app/test"; //回调URL
+    order.notifyURL =  @"http://grss.goodbuild.cn/grss/api/updateOrderStatusAli"; //回调URL
     
     order.service = @"mobile.securitypay.pay";
     order.paymentType = @"1";
