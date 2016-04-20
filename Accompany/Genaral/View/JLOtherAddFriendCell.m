@@ -39,7 +39,6 @@
     
     NSString * imageUrl = UserModel.userPhoto;
     
-    
     //头像
     _userImageView = [[UIImageView alloc]init];
     _userImageView.frame = CGRectMake(10, 7.5, 35, 35);
@@ -72,12 +71,27 @@
     _addLabel.font = [UIFont systemFontOfSize:14.0];
     _addLabel.layer.cornerRadius = 5;
     _addLabel.layer.masksToBounds = YES;
+    UITapGestureRecognizer *tap1 =[[UITapGestureRecognizer alloc]initWithTarget:self  action:@selector(addLabelTap:)];
+    [_addLabel addGestureRecognizer:tap1];
+    _addLabel.userInteractionEnabled = YES;
     [self.contentView addSubview:_addLabel];
     
 }
 
 -(void)userImageTap:(UIGestureRecognizer *)gesture
 {
-  
+   
+    if(_delegate){
+            [_delegate postCell:self userImageTapWithData:_UserModel];
+    }
 }
+-(void)addLabelTap:(UIGestureRecognizer *)gesture
+{
+    
+    if(_delegate){
+        NSLog(@"123");
+        [_delegate addCell:self addFriendTapWithData:_UserModel];
+    }
+}
+
 @end

@@ -14,15 +14,18 @@
 //#import "UserProfileViewController.h"
 //#import "UserProfileManager.h"
 //#import "ContactListSelectViewController.h"
-
+#import "JLPostUserInfoModel.h"
+#import "JLPersonalCenterViewController.h"
 @interface ChatViewController ()<UIAlertViewDelegate, EaseMessageViewControllerDelegate, EaseMessageViewControllerDataSource>
 {
     UIMenuItem *_copyMenuItem;
     UIMenuItem *_deleteMenuItem;
     UIMenuItem *_transpondMenuItem;
 }
-
+@property (nonatomic,strong)JLPostUserInfoModel * userModel;
+@property (nonatomic,strong)JLPostUserInfoModel * chatterModel;
 @property (nonatomic) BOOL isPlayingAudio;
+@property (nonatomic) BOOL IsFinish;
 
 @end
 
@@ -32,7 +35,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-
+    _IsFinish = NO;
     
     self.showRefreshHeader = YES;
     self.delegate = self;
@@ -74,8 +77,55 @@
  
     NSString * nickname = [[NickNameAndHeadImage shareInstance]getNicknameByUserName:self.conversation.chatter];
     
+    
     [self setNavTitle:nickname];
+    
+    
+    [self getchatterInfo];
+    
 }
+
+-(void)getchatterInfo
+{
+
+    UserInfo * userInfo = [UserInfo sharedUserInfo];
+    NSArray * idArray = @[userInfo.userId,self.conversation.chatter];
+    
+        NSString *  ids =  [idArray componentsJoinedByString:@","];
+
+        NSDictionary * postDict = [NSDictionary dictionaryWithObjectsAndKeys:ids,@"userIds", nil];
+        
+        HttpRequest * request = [[HttpRequest alloc]init];
+        
+        [request RequestDataWithUrl:URL_listUsersByIds pragma:postDict];
+        
+        
+        request.successBlock = ^(id obj){
+            
+            
+          NSLog(@"_______%@",obj);
+            NSDictionary * dict1 = obj[0];
+            NSDictionary * dict2 = obj[1];
+            
+            _userModel = [JLPostUserInfoModel mj_objectWithKeyValues:dict1];
+            _chatterModel = [JLPostUserInfoModel mj_objectWithKeyValues:dict2];
+            
+            _IsFinish = YES;
+            
+        };
+        request.failureDataBlock = ^(id error)
+        {
+            
+            NSString * message = (NSString *)error;
+            NSLog(@"%@",message);
+        };
+        request.failureBlock = ^(id obj){
+            
+        };
+        
+        
+    }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -208,8 +258,29 @@
 - (void)messageViewController:(EaseMessageViewController *)viewController
    didSelectAvatarMessageModel:(id<IMessageModel>)messageModel
 {
-//    UserProfileViewController *userprofile = [[UserProfileViewController alloc] initWithUsername:messageModel.nickname];
-//    [self.navigationController pushViewController:userprofile animated:YES];
+
+    
+    if (_IsFinish==YES) {
+        
+        
+        if (messageModel.isSender) {
+            JLPersonalCenterViewController * pcVc = [JLPersonalCenterViewController viewController];
+            pcVc.userModel = self.userModel;
+            pcVc.pushFlag = @"chat";
+            [self.navigationController pushViewController:pcVc animated:YES];
+        }else
+        {
+            JLPersonalCenterViewController * pcVc = [JLPersonalCenterViewController viewController];
+            pcVc.userModel = self.chatterModel;
+            pcVc.pushFlag = @"chat";
+            [self.navigationController pushViewController:pcVc animated:YES];
+        }
+  
+    }else
+    {
+        NSLog(@"不能点击");
+    }
+    
 }
 
 

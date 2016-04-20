@@ -239,14 +239,18 @@ static NickNameAndHeadImage* _instance = nil;
         
         
         // NSLog(@"_______%@",obj);
+        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
         
         for (NSDictionary *dic in obj) {
             [_NickNames setObject: [dic objectForKey:@"nikeName"] forKey: [dic objectForKey:@"userId"]];
             
             [_UserPhotos setObject: [dic objectForKey:@"userPhoto"] forKey: [dic objectForKey:@"userId"]];
+            
+          
         }
         
-        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+
+    
         [ud setObject:_NickNames forKey:dUserDefaults_Dic_NickName];
         [ud setObject:_UserPhotos forKey:dUserDefaults_Dic_UserPhoto];
         [ud synchronize];

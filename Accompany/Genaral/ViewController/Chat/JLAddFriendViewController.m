@@ -10,7 +10,7 @@
 #import "JLApplyViewController.h"
 #import "JLAddFriendCell.h"
 #import "InvitationManager.h"
-
+#import "JLPersonalCenterViewController.h"
 @interface JLAddFriendViewController ()<UITextFieldDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) NSMutableArray *dataSource;
@@ -157,13 +157,19 @@
 {
     return 50;
 }
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+#pragma mark - getter
+-(void)postCell:(JLOtherAddFriendCell *)cell userImageTapWithData:(id)celldata;
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    self.selectedIndexPath = indexPath;
- 
-    JLPostUserInfoModel * model = _UsersListArray[indexPath.row];
+    NSLog(@"%@",celldata);
+    
+    JLPersonalCenterViewController * pcVc = [JLPersonalCenterViewController viewController];
+    pcVc.userModel = (JLPostUserInfoModel *)celldata;
+    [self.navigationController pushViewController:pcVc animated:YES];
+    
+}
+-(void)addCell:(JLOtherAddFriendCell *)cell addFriendTapWithData:(id)celldata;
+{
+    JLPostUserInfoModel * model = (JLPostUserInfoModel*)celldata;
     
     NSString *buddyName = model.userId;
     
@@ -177,7 +183,7 @@
                         completionBlock:nil
                       cancelButtonTitle:NSLocalizedString(@"ok", @"OK")
                       otherButtonTitles:nil];
-                
+        
         
         
     }
@@ -193,8 +199,8 @@
     }else{
         [self showMessageAlertView];
     }
+    
 }
-
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

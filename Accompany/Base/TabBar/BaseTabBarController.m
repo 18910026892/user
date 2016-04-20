@@ -521,7 +521,7 @@ static BaseTabBarController* _myTabBarVC = nil;
     
     
     infoVc  = [JLInfoViewController viewController];
-    [self setupItemWithViewController:infoVc ItemData:@{@"title":@"资料",@"imageStr":@"tab2_gray",@"imageStr_s":@"tab2_red"}];
+    [self setupItemWithViewController:infoVc ItemData:@{@"title":@"资料",@"imageStr":@"tab6_gray",@"imageStr_s":@"tab6_red"}];
     
     
     JLCommunityViewContrller *comVC = [JLCommunityViewContrller viewController];

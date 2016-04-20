@@ -145,7 +145,6 @@
     request.successBlock = ^(id obj){
         
         
-        NSLog(@"%@%@",obj,postDict);
         
         _UsersArray = obj;
         _UsersModelArray = [JLPostUserInfoModel mj_objectArrayWithKeyValuesArray:_UsersArray];
@@ -194,11 +193,14 @@
     
     NSDictionary * postDict = [NSDictionary dictionaryWithObjectsAndKeys:_page,@"page",token,@"token",config.latitude,@"lat",config.longitude,@"lng",_userSex,@"sex",nil];
     
+    NSLog(@"%@",postDict);
     HttpRequest * request = [[HttpRequest alloc]init];
     [request RequestDataWithUrl:URL_searchNearbyUser pragma:postDict];
     
     
     request.successBlock = ^(id obj){
+        
+        
         
         _UsersArray = obj;
         _UsersModelArray = [JLPostUserInfoModel mj_objectArrayWithKeyValuesArray:_UsersArray];
@@ -270,7 +272,49 @@
 }
 
 #pragma mark - getter
+-(void)postCell:(JLOtherAddFriendCell *)cell userImageTapWithData:(id)celldata;
+{
+    NSLog(@"%@",celldata);
+    
+    JLPersonalCenterViewController * pcVc = [JLPersonalCenterViewController viewController];
+    pcVc.userModel = (JLPostUserInfoModel *)celldata;
+    [self.navigationController pushViewController:pcVc animated:YES];
+    
+}
+-(void)addCell:(JLOtherAddFriendCell *)cell addFriendTapWithData:(id)celldata;
+{
+    JLPostUserInfoModel * model = (JLPostUserInfoModel*)celldata;
+    
+    NSString *buddyName = model.userId;
+    
+    NSString * nickName = model.nikeName;
+    
+    if ([self didBuddyExist:buddyName]) {
+        NSString *message = [NSString stringWithFormat:NSLocalizedString(@"friend.repeat", @"'%@'has been your friend!"), nickName];
+        
+        [EMAlertView showAlertWithTitle:message
+                                message:nil
+                        completionBlock:nil
+                      cancelButtonTitle:NSLocalizedString(@"ok", @"OK")
+                      otherButtonTitles:nil];
+        
+        
+        
+    }
+    else if([self hasSendBuddyRequest:buddyName])
+    {
+        NSString *message = [NSString stringWithFormat:NSLocalizedString(@"friend.repeatApply", @"you have send fridend request to '%@'!"), nickName];
+        [EMAlertView showAlertWithTitle:message
+                                message:nil
+                        completionBlock:nil
+                      cancelButtonTitle:NSLocalizedString(@"ok", @"OK")
+                      otherButtonTitles:nil];
+        
+    }else{
+        [self showMessageAlertView];
+    }
 
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
     
@@ -322,43 +366,6 @@
 
 
 #pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    self.selectedIndexPath = indexPath;
-    
-    JLPostUserInfoModel * model = _UsersListArray[indexPath.row];
-    
-    NSString *buddyName = model.userId;
-    
-    NSString * nickName = model.nikeName;
-    
-    if ([self didBuddyExist:buddyName]) {
-        NSString *message = [NSString stringWithFormat:NSLocalizedString(@"friend.repeat", @"'%@'has been your friend!"), nickName];
-        
-        [EMAlertView showAlertWithTitle:message
-                                message:nil
-                        completionBlock:nil
-                      cancelButtonTitle:NSLocalizedString(@"ok", @"OK")
-                      otherButtonTitles:nil];
-        
-        
-        
-    }
-    else if([self hasSendBuddyRequest:buddyName])
-    {
-        NSString *message = [NSString stringWithFormat:NSLocalizedString(@"friend.repeatApply", @"you have send fridend request to '%@'!"), nickName];
-        [EMAlertView showAlertWithTitle:message
-                                message:nil
-                        completionBlock:nil
-                      cancelButtonTitle:NSLocalizedString(@"ok", @"OK")
-                      otherButtonTitles:nil];
-        
-    }else{
-        [self showMessageAlertView];
-    }
-}
 
 #pragma mark - UITextFieldDelegate
 

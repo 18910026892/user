@@ -79,4 +79,8 @@
 
 
 @property (nonatomic,copy) NSString * attentionTitle;
+
+
+@property (nonatomic,copy)NSString * pushFlag;
+
 @end

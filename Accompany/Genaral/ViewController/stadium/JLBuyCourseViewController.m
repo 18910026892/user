@@ -84,62 +84,67 @@
     if(_IsAlipay==NO&&_IsWechatpay==NO)
     {
         [HDHud showMessageInView:self.view title:@"亲，请先选择一种支付方式"];
+    }else
+    {
+        [HDHud showHUDInView:self.view title:@"支付中..."];
+        userInfo = [UserInfo sharedUserInfo];
+        
+        NSString * courtseID = [self.coachModel.grssCourse valueForKey:@"id"];
+        
+        NSString * userComment = @"";
+        NSString * channel = @"0";
+        NSString * attach = @"教练随行订单支付";
+        NSString * body = [NSString stringWithFormat:@"教练随行订单%@",courtseID];
+        
+        NSString * promoId = self.promoId;
+        
+        userInfo = [UserInfo sharedUserInfo];
+        
+        
+        NSDictionary * postDict = [NSDictionary dictionaryWithObjectsAndKeys:userInfo.token,@"token",@"1",@"amount",courtseID,@"courseId",userComment,@"userComment",channel,@"channel",attach,@"attach",body,@"body",promoId,@"promoId", nil];
+        
+        
+        
+        HttpRequest * request = [[HttpRequest alloc]init];
+        [request RequestDataWithUrl:URL_creatOrder pragma:postDict];
+        
+        request.successBlock = ^(id obj){
+            
+            
+            
+            _WXinfoDict = obj[0];
+            
+            
+            if (_IsAlipay==YES&&_IsWechatpay==NO) {
+                
+                [self zhifubaoMethod];
+                
+                
+            }else if(_IsWechatpay==YES&&_IsAlipay==NO)
+            {
+                
+                [self wxpayWithDict:_WXinfoDict];
+                
+            }
+            
+            [HDHud hideHUDInView:self.view];
+        };
+        request.failureDataBlock = ^(id error)
+        {
+            [HDHud hideHUDInView:self.view];
+            NSString * message = (NSString *)error;
+            [HDHud showMessageInView:self.view title:message];
+        };
+        
+        request.failureBlock = ^(id obj){
+            
+            [HDHud showNetWorkErrorInView:self.view];
+        };
+
+        
     }
     
     
-    userInfo = [UserInfo sharedUserInfo];
-
-    NSString * courtseID = [self.coachModel.grssCourse valueForKey:@"id"];
-    
-    NSString * userComment = @"";
-    NSString * channel = @"0";
-    NSString * attach = @"教练随行订单支付";
-    NSString * body = [NSString stringWithFormat:@"教练随行订单%@",courtseID];
-    
-    NSString * promoId = self.promoId;
-    
-    userInfo = [UserInfo sharedUserInfo];
-    
-    
-    NSDictionary * postDict = [NSDictionary dictionaryWithObjectsAndKeys:userInfo.token,@"token",@"1",@"amount",courtseID,@"courseId",userComment,@"userComment",channel,@"channel",attach,@"attach",body,@"body",promoId,@"promoId", nil];
-    
-
-    
-    HttpRequest * request = [[HttpRequest alloc]init];
-    [request RequestDataWithUrl:URL_creatOrder pragma:postDict];
-    
-    request.successBlock = ^(id obj){
-        
-       
-        
-        _WXinfoDict = obj[0];
-        
- 
-        if (_IsAlipay==YES&&_IsWechatpay==NO) {
-            
-            [self zhifubaoMethod];
-            
-            
-        }else if(_IsWechatpay==YES&&_IsAlipay==NO)
-        {
-            
-            [self wxpayWithDict:_WXinfoDict];
-            
-        }
-        
-        
-    };
-    request.failureDataBlock = ^(id error)
-    {
-        [HDHud hideHUDInView:self.view];
-        NSString * message = (NSString *)error;
-        [HDHud showMessageInView:self.view title:message];
-    };
-    
-    request.failureBlock = ^(id obj){
-        
-        [HDHud showNetWorkErrorInView:self.view];
-    };
     
 
     
@@ -405,7 +410,13 @@
                     double d  = [_Discount doubleValue];
                     double a  = p-d ;
                     
-                    _cellContent.text = [NSString stringWithFormat:@"%.2f元",a];
+                    if (a<1) {
+                        a=1.00;
+                    }
+                    
+                  
+
+                    _cellContent.text = [NSString stringWithFormat:@"%.0f元",a];
                     
                     _amount = [NSString stringWithFormat:@"%.2f",a];
                     
@@ -626,6 +637,8 @@
 {
     UIAlertView *alter = [[UIAlertView alloc] initWithTitle:title message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alter show];
+    
+    
 }
 
 
@@ -645,7 +658,7 @@
             case WXSuccess:
                 strMsg = @"支付结果：成功！";
                 [SNY_Toast showMsg:@"微信支付成功" WithDuration:2 WithStyle:showStyleWear];
-                [self PaySuccesessPoP];
+               
                 
                 break;
                 
@@ -662,12 +675,9 @@
 
 -(void)PaySuccesessPoP
 {
-    __block JLBuyCourseViewController * bself = self;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        
-        [bself.navigationController pushViewController:[JLPaySuccessViewController viewController] animated:YES];
-    });
+ 
+    [self.navigationController pushViewController:[JLPaySuccessViewController viewController] animated:YES];
+    
 }
 
 

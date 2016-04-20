@@ -11,9 +11,9 @@
 @class JLOtherAddFriendCell;
 @protocol JLOtherAddFriendCellDelegate <NSObject>
 
+-(void)postCell:(JLOtherAddFriendCell *)cell userImageTapWithData:(id)celldata;
 
-
-
+-(void)addCell:(JLOtherAddFriendCell *)cell addFriendTapWithData:(id)celldata;
 @end
 @interface JLOtherAddFriendCell : UITableViewCell
 @property(nonatomic,strong)id<JLOtherAddFriendCellDelegate>delegate;

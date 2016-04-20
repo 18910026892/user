@@ -198,10 +198,10 @@
         _ImageInfoView = [[UIView alloc]initWithFrame:CGRectMake(0,self.detailInfoView.bottom+40, kMainBoundsWidth, 130*Proportion)];
         _ImageInfoView.userInteractionEnabled = YES;
         [_backScroll addSubview:_ImageInfoView];
-        NSArray *placeImgs = @[@"info01",@"info02",@"info03"];
+        NSArray *placeImgs = @[@"zhengmian.png",@"cemian.png",@"beimian.png"];
         for (int i=0; i<3; i++) {
             UIImageView *img = [[UIImageView alloc]initWithFrame:CGRectMake((90*Proportion+10)*i+15, 0, 90*Proportion, 130*Proportion)];
-            img.backgroundColor = [UIColor redColor];
+            img.backgroundColor = [UIColor clearColor];
             [_ImageInfoView addSubview:img];
             img.userInteractionEnabled = YES;
             [img sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:placeImgs[i]]];

@@ -7,7 +7,10 @@
 //
 
 #import "JLHelpViewController.h"
-
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <AVFoundation/AVCaptureDevice.h>
+#import "MJPhotoBrowser.h"
+#import "MJPhoto.h"
 @interface JLHelpViewController ()
 
 @end
@@ -29,16 +32,193 @@
     [self setupViews];
     [self showBackButton:YES];
     
-    
+
 }
 -(void)setupDatas
 {
+    _uploadImgArr = [[NSMutableArray alloc]initWithCapacity:10];
+    _ImageViewArr = [[NSMutableArray alloc]initWithCapacity:10];
 }
+
+
+
+-(void)initImageViewData
+{
+    for(int i=0; i<3;i++){
+        float i_wight = (kMainBoundsWidth-10*5)/4;
+        float i_x = (i_wight+10)*(i%4)+10;
+        float i_y = (i_wight+10)*(i/4);
+        UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(i_x, i_y, i_wight, i_wight)];
+        img.tag = i;
+        img.hidden = YES;
+        img.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(uploadImgViewClick:)];
+        [img addGestureRecognizer:tap];
+        [_imgView addSubview:img];
+        [_ImageViewArr addObject:img];
+    }
+    [self resetImageViewData];
+}
+
+-(void)resetImageViewData
+{
+    for(int i=0;i<_uploadImgArr.count+1;i++){
+        if(i==3) return;
+        UIImageView *imgView = (UIImageView *)[_ImageViewArr objectAtIndex:i];
+        imgView.hidden = NO;
+        if(i==_uploadImgArr.count){
+            //添加照片按钮
+            imgView.image = [UIImage imageNamed:@"addimage"];
+        }else{
+            UIImage *img = (UIImage *)[_uploadImgArr objectAtIndex:i];
+            [imgView setImage:img];
+        }
+    }
+    for(int m=(int)(_uploadImgArr.count+1);m<3;m++){
+        UIImageView *imgView = (UIImageView *)[_ImageViewArr objectAtIndex:m];
+        imgView.hidden = YES;
+    }
+    float i_wight = (kMainBoundsWidth-10*5)/4;
+    float line = (_uploadImgArr.count+1)%4?(_uploadImgArr.count+1)/4+1:(_uploadImgArr.count+1)/4;
+    _imgViewHeightConstraint.constant = (i_wight+10)*line;
+}
+
+-(void)uploadImgViewClick:(UIGestureRecognizer *)gesture
+{
+    if(gesture.view.tag==_uploadImgArr.count){
+        UIActionSheet *PhotoActionSheet =[[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"本地相册",@"拍照", nil];
+        PhotoActionSheet.delegate = self;
+        PhotoActionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+        [PhotoActionSheet showInView:self.view];
+    }else{
+        //进入预览大图
+        UIImageView *imgView = (UIImageView *)gesture.view;
+        [self browseImages:_uploadImgArr index:imgView.tag touchImageView:imgView];
+    }
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    UIImagePickerController *imgpicker = [[UIImagePickerController alloc]init];
+    switch (buttonIndex) {
+        case 1:
+        {
+            NSLog(@"点击了照相");
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+            {
+                AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+                if (authStatus == AVAuthorizationStatusRestricted || authStatus ==AVAuthorizationStatusDenied)
+                {
+                    //无权限
+                    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"提示" message:@"请在设备的设置-隐私-相机中允许访问相机!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                    [alert show];
+                    
+                }else{
+                    UIImagePickerController *imgpicker = [[UIImagePickerController alloc]init];
+                    imgpicker.sourceType=UIImagePickerControllerSourceTypeCamera;
+                    //imgpicker.allowsEditing = YES;
+                    imgpicker.delegate = self;
+                    [self presentViewController:imgpicker animated:YES completion:nil];
+                }
+            }
+            else
+            {
+                UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"提示" message:@"本设备不支持相机模式" delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+                [alert show];
+                return;
+            }
+        }
+            break;
+        case 0:{
+            NSLog(@"相册");
+            ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
+            if (author == ALAuthorizationStatusRestricted || author ==ALAuthorizationStatusDenied)
+            {
+                //无权限
+                UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"提示" message:@"请先在隐私中设置相册权限" delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+                [alert show];
+                
+            }else{
+                imgpicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                //imgpicker.allowsEditing = YES;
+                imgpicker.delegate = self;
+                
+                [self presentViewController:imgpicker animated:YES completion:nil];
+            }
+        }
+            break;
+            
+        case 2:
+            NSLog(@"取消");
+            [actionSheet setHidden:YES];
+            break;
+        default:
+            break;
+    }
+}
+#pragma mark imagePickerController methods
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo NS_DEPRECATED_IOS(2_0,3_0)
+{
+   // [self pushToEditPhotoViewController:image];
+    [_uploadImgArr addObject:image];
+    [self resetImageViewData];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+}
+#pragma mark Camera View Delegate Methods
+- (void)imagePickerController:(UIImagePickerController *)picker
+didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    //[self pushToEditPhotoViewController:image];
+    
+    [_uploadImgArr addObject:image];
+    [self resetImageViewData];
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+#pragma mark - image browser
+- (void)browseImages:(NSArray *)imageArr index:(NSInteger)index touchImageView:(UIImageView *)touchImageView{
+    NSInteger count = imageArr.count;
+    // 1.封装图片数据
+    NSMutableArray *photos = [NSMutableArray arrayWithCapacity:count];
+    for (int i = 0; i < count; i++) {
+        MJPhoto *photo = [[MJPhoto alloc] init];
+        photo.image = imageArr[i];
+        photo.srcImageView = touchImageView; // 来源于哪个UIImageView
+        [photos addObject:photo];
+    }
+    // 2.显示相册
+    MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+    browser.currentPhotoIndex = index; // 弹出相册时显示的第一张图片是？
+    browser.photos = photos; // 设置所有的图片
+    [browser show];
+}
+
+
 -(void)setupViews
 {
-
+ 
+    [self.RightBtn setTitle:@"客服" forState:UIControlStateNormal];
+    [self.RightBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [self.RightBtn addTarget:self action:@selector(kefu) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.view addSubview:self.BGView];
+    [self.view addSubview:self.imgView];
     [self.view addSubview:self.SubmitButton];
+     [self initImageViewData];
+}
+-(void)kefu
+{
+    NSString * telNumber = [NSString stringWithFormat:@"tel://67634922"];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:telNumber]];
     
 }
 -(UIView*)BGView
@@ -54,6 +234,15 @@
     return _BGView;
 }
 
+-(UIView*)imgView
+{
+    if (!_imgView) {
+        _imgView = [[UIView alloc]init];
+        _imgView.frame = CGRectMake(0, 224, kMainBoundsWidth, 80);
+        
+    }
+    return _imgView;
+}
 
 -(UITextView*)textView
 {
@@ -107,7 +296,7 @@
     if (!_SubmitButton) {
         
         _SubmitButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _SubmitButton.frame = CGRectMake(20,235, kMainScreenWidth-40, 35);
+        _SubmitButton.frame = CGRectMake(20,340, kMainScreenWidth-40, 35);
         _SubmitButton.backgroundColor = [UIColor redColor];
         [_SubmitButton setTitle:@"提交" forState:UIControlStateNormal];
         [_SubmitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -133,21 +322,33 @@
         
         NSDictionary * postDict = [NSDictionary dictionaryWithObjectsAndKeys:token,@"token",comment,@"comment", nil];
         
-        HttpRequest * request = [[HttpRequest alloc]init];
-        [request RequestDataWithUrl:URL_feedback pragma:postDict];
         
+        NSMutableArray *imgsData = [[NSMutableArray alloc]initWithCapacity:9];
+        [_uploadImgArr enumerateObjectsUsingBlock:^(UIImage *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSData *data = UIImageJPEGRepresentation(obj, 1);
+            [imgsData addObject:data];
+        }];
         
-        request.successBlock = ^(id obj){
-            
-            [HDHud hideHUDInView:self.view];
-            NSLog(@"%@",obj);
-         
+        HttpRequest *request = [[HttpRequest alloc]init];
+        [request RequestDataWithUrl:URL_feedback pragma:postDict ImageDatas:imgsData imageName:@"images"];
+        [request getResultWithSuccess:^(id response) {
             [HDHud showMessageInView:self.view title:@"提交成功"];
-            [self performSelector:@selector(backMine) withObject:nil afterDelay:1.5];
-                
        
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)),dispatch_get_main_queue(),^{
+                [self.navigationController popViewControllerAnimated:YES];
+            });
             
-        };
+        } DataFaiure:^(id error) {
+            NSString *message = (NSString *)error;
+            [HDHud showMessageInView:self.view title:message];
+        } Failure:^(id error) {
+            [HDHud showNetWorkErrorInView:self.view];
+        }];
+        
+        
+        
+        
+    
         request.failureDataBlock = ^(id error)
         {
             [HDHud hideHUDInView:self.view];
@@ -168,11 +369,7 @@
     
 }
 
--(void)backMine
-{
-    NSInteger index = [[self.navigationController viewControllers] indexOfObject:self];
-    [self.navigationController popToViewController:[[self.navigationController viewControllers] objectAtIndex:index-1] animated:YES];
-}
+
 
 -(BOOL)textView:(UITextView *)textview shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {

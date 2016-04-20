@@ -37,7 +37,14 @@ static const char kRepresentedObject;
     [self setNavigationBarHide:YES];
     [self setupDatas];
     [self setupViews];
-     [[NickNameAndHeadImage shareInstance] loadUserProfileInBackgroundWithUserId:self.userModel.userId];
+    
+    if ([_pushFlag isEqualToString:@"chat"]) {
+        NSLog(@"chat");
+    }else
+    {
+         [[NickNameAndHeadImage shareInstance] loadUserProfileInBackgroundWithUserId:self.userModel.userId];
+    }
+   
     
 }
 -(void)setupDatas
@@ -82,7 +89,7 @@ static const char kRepresentedObject;
     [request getResultWithSuccess:^(id response) {
         NSArray *resultList = (NSArray *)response;
 
-        
+        NSLog(@"**%@",resultList);
         if(page==1){
             [_dynamicArray removeAllObjects];
         }

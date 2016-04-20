@@ -70,7 +70,7 @@
     
     request.successBlock = ^(id obj){
         
-        NSLog(@"***%@",obj);
+      
         
         _ExchangeArray = obj;
         _ExchangeModelArray = [JLExchangeModel mj_objectArrayWithKeyValuesArray:_ExchangeArray];

@@ -8,11 +8,20 @@
 
 #import "BaseViewController.h"
 
-@interface JLHelpViewController : BaseViewController <UITextViewDelegate>
-
+@interface JLHelpViewController : BaseViewController <UITextFieldDelegate,UITextViewDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate,UINavigationControllerDelegate>
 {
     UserInfo * userInfo;
 }
+
+@property (strong, nonatomic) UIView *imgView;
+@property (strong, nonatomic) NSLayoutConstraint *imgViewHeightConstraint;
+
+@property(nonatomic,strong)NSMutableArray *uploadImgArr;
+@property(nonatomic,strong)NSMutableArray *ImageViewArr;
+
+//客服按钮
+@property(nonatomic,strong)UIBarButtonItem *rightBarButtonItem;
+
 @property(nonatomic,strong)UITextView * textView;
 
 @property (nonatomic,strong)UILabel * label1,*label2;

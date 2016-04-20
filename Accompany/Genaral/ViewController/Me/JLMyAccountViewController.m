@@ -13,6 +13,9 @@
 #import "JLBusinessCardViewController.h"
 #import "JLSetUpViewController.h"
 
+#import "JLExchangeVoucherViewController.h"
+#import "JLReadeemCodeViewController.h"
+
 @interface JLMyAccountViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property(nonatomic,strong)UITableView *table;
@@ -38,7 +41,7 @@
 
 -(void)setupDatas
 {
-    _DataList = @[@"我的钱包",@"更换手机",@"我的课程",@"我的名片",@"设置"];
+    _DataList = @[@"更换手机",@"优惠券",@"优惠码", @"我的名片",@"设置"];
 }
 
 -(UITableView *)table
@@ -102,26 +105,26 @@
     switch (indexPath.section) {
         case 0:
         {
-            [self.navigationController pushViewController:[JLWalletViewController viewController] animated:YES];
+            if ([userInfo.userPhone isValidPhone]) {
+                [self.navigationController pushViewController:[JLChangePhoneViewController viewController] animated:YES];
+            }else
+            {
+                [HDHud showMessageInView:self.view title:@"请先去绑定手机号"];
+            }
         }
             break;
             case 1:
         {
             
-            if ([userInfo.userPhone isValidPhone]) {
-                  [self.navigationController pushViewController:[JLChangePhoneViewController viewController] animated:YES];
-            }else
-            {
-                [HDHud showMessageInView:self.view title:@"请先去绑定手机号"];
-            }
+           [self.navigationController pushViewController:[JLExchangeVoucherViewController viewController] animated:YES];
        
         }
             break;
         case 2:
         {
             
+             [self.navigationController pushViewController:[JLReadeemCodeViewController viewController] animated:YES];
             
-             [self.navigationController pushViewController:[JLLessonsViewController viewController] animated:YES];
         }
             break;
         case 3:

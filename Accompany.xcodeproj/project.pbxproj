@@ -61,6 +61,11 @@
 		D26C7CF01C93E6BA005AAF00 /* JLArowInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D26C7CED1C93E6BA005AAF00 /* JLArowInputCell.m */; };
 		D270B1E21C5B0E4E004B18B9 /* JLBusinessCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D270B1E11C5B0E4E004B18B9 /* JLBusinessCardViewController.m */; };
 		D270B1ED1C5B147E004B18B9 /* JLLessonsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D270B1EC1C5B147E004B18B9 /* JLLessonsViewController.m */; };
+		D273CF6F1CC70DD70083A2EA /* tab6_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D273CF6E1CC70DD70083A2EA /* tab6_gray@2x.png */; };
+		D273CF711CC70DE00083A2EA /* tab6_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D273CF701CC70DE00083A2EA /* tab6_red@2x.png */; };
+		D273CF751CC70E670083A2EA /* zhengmian.png in Resources */ = {isa = PBXBuildFile; fileRef = D273CF721CC70E670083A2EA /* zhengmian.png */; };
+		D273CF761CC70E670083A2EA /* cemian.png in Resources */ = {isa = PBXBuildFile; fileRef = D273CF731CC70E670083A2EA /* cemian.png */; };
+		D273CF771CC70E670083A2EA /* beimian.png in Resources */ = {isa = PBXBuildFile; fileRef = D273CF741CC70E670083A2EA /* beimian.png */; };
 		D27438991CA372B60011E99F /* JLCoachDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D27438981CA372B60011E99F /* JLCoachDetailViewController.m */; };
 		D27438A71CA3B60F0011E99F /* CommonUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D27438A61CA3B60F0011E99F /* CommonUtil.m */; };
 		D27438C31CA3D6850011E99F /* QRCodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = D27438C21CA3D6850011E99F /* QRCodeGenerator.m */; };
@@ -548,6 +553,11 @@
 		D270B1E11C5B0E4E004B18B9 /* JLBusinessCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLBusinessCardViewController.m; sourceTree = "<group>"; };
 		D270B1EB1C5B147E004B18B9 /* JLLessonsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLLessonsViewController.h; sourceTree = "<group>"; };
 		D270B1EC1C5B147E004B18B9 /* JLLessonsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLLessonsViewController.m; sourceTree = "<group>"; };
+		D273CF6E1CC70DD70083A2EA /* tab6_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab6_gray@2x.png"; sourceTree = "<group>"; };
+		D273CF701CC70DE00083A2EA /* tab6_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab6_red@2x.png"; sourceTree = "<group>"; };
+		D273CF721CC70E670083A2EA /* zhengmian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zhengmian.png; sourceTree = "<group>"; };
+		D273CF731CC70E670083A2EA /* cemian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cemian.png; sourceTree = "<group>"; };
+		D273CF741CC70E670083A2EA /* beimian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beimian.png; sourceTree = "<group>"; };
 		D27438971CA372B60011E99F /* JLCoachDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLCoachDetailViewController.h; sourceTree = "<group>"; };
 		D27438981CA372B60011E99F /* JLCoachDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLCoachDetailViewController.m; sourceTree = "<group>"; };
 		D27438A51CA3B60F0011E99F /* CommonUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUtil.h; sourceTree = "<group>"; };
@@ -3310,15 +3320,20 @@
 		FCF01FD61C83DFE60053F187 /* baseImage */ = {
 			isa = PBXGroup;
 			children = (
+				D273CF721CC70E670083A2EA /* zhengmian.png */,
+				D273CF731CC70E670083A2EA /* cemian.png */,
+				D273CF741CC70E670083A2EA /* beimian.png */,
 				FCF01FD71C83DFE60053F187 /* changguan-@2x.png */,
 				FCF01FD81C83DFE60053F187 /* dongtaimoren-@2x.png */,
 				FCF01FD91C83DFE60053F187 /* liebiaotouxiang-@2x.png */,
 				FCF01FDA1C83DFE60053F187 /* morentou-@2x.png */,
 				FCF01FDB1C83DFE60053F187 /* shouyejiazai-@2x.png */,
+				D273CF6E1CC70DD70083A2EA /* tab6_gray@2x.png */,
 				FCF01FDC1C83DFE60053F187 /* tab1_gray@2x.png */,
 				FCF01FDD1C83DFE60053F187 /* tab1_red@2x.png */,
 				FCF01FDE1C83DFE60053F187 /* tab2_gray@2x.png */,
 				FCF01FDF1C83DFE60053F187 /* tab2_red@2x.png */,
+				D273CF701CC70DE00083A2EA /* tab6_red@2x.png */,
 				FCF01FE01C83DFE60053F187 /* tab3_gray@2x.png */,
 				FCF01FE11C83DFE60053F187 /* tab3_red@2x.png */,
 				FCF01FE21C83DFE60053F187 /* tab4_gray@2x.png */,
@@ -3446,6 +3461,7 @@
 				D2D724491C5F926A00B1CEDA /* chatBar_colorMore_videoCallSelected@2x.png in Resources */,
 				D2D724461C5F926A00B1CEDA /* chatBar_colorMore_photoSelected@2x.png in Resources */,
 				FCAE7AC01CA6DE6F00D94035 /* chahao@2x.png in Resources */,
+				D273CF6F1CC70DD70083A2EA /* tab6_gray@2x.png in Resources */,
 				D2D724441C5F926A00B1CEDA /* chatBar_colorMore_locationSelected@2x.png in Resources */,
 				FCF020081C83DFE60053F187 /* tab5_gray@2x.png in Resources */,
 				D2D7246F1C5F926A00B1CEDA /* user@2x.png in Resources */,
@@ -3485,6 +3501,7 @@
 				D2D724481C5F926A00B1CEDA /* chatBar_colorMore_videoCall@2x.png in Resources */,
 				FCD1A76C1CB8B74900E1D469 /* bofang@2x.png in Resources */,
 				D2D7243E1C5F926A00B1CEDA /* chat_sender_bg@2x.png in Resources */,
+				D273CF771CC70E670083A2EA /* beimian.png in Resources */,
 				D2D7243D1C5F926A00B1CEDA /* chat_receiver_bg@2x.png in Resources */,
 				FCF01FFB1C83DFE60053F187 /* changguan-@2x.png in Resources */,
 				D2D724621C5F926A00B1CEDA /* VoiceSearchFeedback008@2x.png in Resources */,
@@ -3543,11 +3560,14 @@
 				D2D724411C5F926A00B1CEDA /* chatBar_colorMore_camera@2x.png in Resources */,
 				FCF0200C1C83DFE60053F187 /* arowmenu@2x.png in Resources */,
 				FCD1A7A41CB8C11300E1D469 /* JLPostListCell.xib in Resources */,
+				D273CF751CC70E670083A2EA /* zhengmian.png in Resources */,
 				FCD1A7A01CB8C11300E1D469 /* JLCommentListCell.xib in Resources */,
+				D273CF711CC70DE00083A2EA /* tab6_red@2x.png in Resources */,
 				FCF020091C83DFE60053F187 /* tab5_red@2x.png in Resources */,
 				D2D7243B1C5F926A00B1CEDA /* chat_item_file@2x.png in Resources */,
 				FCF020071C83DFE60053F187 /* tab4_red@2x.png in Resources */,
 				FCD1A7781CB8B86100E1D469 /* JLVideoPlayerViewController.xib in Resources */,
+				D273CF761CC70E670083A2EA /* cemian.png in Resources */,
 				D2D724691C5F926A00B1CEDA /* VoiceSearchFeedback015@2x.png in Resources */,
 				FCF020151C83DFE60053F187 /* post_more@2x.png in Resources */,
 				D2D7246D1C5F926A00B1CEDA /* VoiceSearchFeedback019@2x.png in Resources */,
