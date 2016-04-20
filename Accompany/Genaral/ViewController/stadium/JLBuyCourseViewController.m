@@ -117,7 +117,7 @@
         userInfo = [UserInfo sharedUserInfo];
         
         
-        NSDictionary * postDict = [NSDictionary dictionaryWithObjectsAndKeys:userInfo.token,@"token",@"1",@"amount",courtseID,@"courseId",userComment,@"userComment",channel,@"channel",attach,@"attach",body,@"body",promoId,@"promoId", nil];
+        NSDictionary * postDict = [NSDictionary dictionaryWithObjectsAndKeys:userInfo.token,@"token",_amount,@"amount",courtseID,@"courseId",userComment,@"userComment",channel,@"channel",attach,@"attach",body,@"body",promoId,@"promoId", nil];
         
         
         
@@ -514,7 +514,7 @@
     
     _CreatOrderNum = [dict objectForKey:@"orderNo"];
     
-    _CreatOrderMonay = [dict objectForKey:@"ordermoney"];
+    _CreatOrderMonay = _amount;
     //partner和seller获取失败,提示
     if ([partner length] == 0 || [seller length] == 0)
     {
@@ -533,7 +533,7 @@
     Order *order = [[Order alloc] init];
     order.partner = partner;
     order.seller = seller;
-    order.tradeNO = [self getRandomString]; //订单ID（由商家自行制定）    ///
+    order.tradeNO = _CreatOrderNum; //订单ID（由商家自行制定）    ///
     order.productName = @"教练随行课程订单"; //商品标题
     order.productDescription = @"教练随行视频课程"; //商品描述
     
